@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 const tempData = [
     {
+        id: 1,
         name: 'Plan a trip',
         color: '#FFD740',
         todos: [
@@ -18,11 +19,12 @@ const tempData = [
             },
             {
                 title: 'Pack Luggage',
-                completed: false,
+                completed: true,
             },
         ]
     },
     {
+        id: 2,
         name: 'Football Match',
         color: '#AEEA00',
         todos: [
@@ -40,11 +42,12 @@ const tempData = [
             },
             {
                 title: 'Pack Luggage',
-                completed: false,
+                completed: true,
             },
         ]
     },
     {
+        id: 3,
         name: 'New React Project',
         color: '#FF4081',
         todos: [
@@ -62,11 +65,12 @@ const tempData = [
             },
             {
                 title: 'Pack Luggage',
-                completed: false,
+                completed: true,
             },
         ]
     },
     {
+        id: 4,
         name: 'Birthday Party',
         color: '#E040FB',
         todos: [
@@ -84,7 +88,7 @@ const tempData = [
             },
             {
                 title: 'Pack Luggage',
-                completed: false,
+                completed: true,
             },
         ]
     },
