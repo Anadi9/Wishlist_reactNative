@@ -45,8 +45,7 @@ export default class TodoModal extends Component {
         const completedCount = list.todos.filter(todo => todo.completed === true).length;
 
         return (
-            <KeyboardAvoidingView style={{flex: 1}} behavior="padding">
-            <SafeAreaView style={styles.container}>
+            <View style={styles.container}>
                 <TouchableOpacity style={{ position: 'absolute', top: 60, right: 30, zIndex: 10 }} onPress={this.props.closeModal}>
                     <Icon name="close" size={25} color={colors.white} />
                 </TouchableOpacity>
@@ -59,17 +58,16 @@ export default class TodoModal extends Component {
                 </View>
 
                 <View style={[styles.section, { flex: 3 }]}>
-                    <FlatList data={list.todos} renderItem={({item, index}) => this.renderTodo(item, index)} keyExtractor={item => item.title} contentContainerStyle={{paddingHorizontal: 30, paddingVertical: 60}} showsVerticalScrollIndicator={false} />
+                    <FlatList data={list.todos} renderItem={({item, index}) => this.renderTodo(item, index)} keyExtractor={(_, index) => index.toString()} contentContainerStyle={{paddingHorizontal: 30, paddingVertical: 60}} showsVerticalScrollIndicator={false} />
                 </View>
 
-                <KeyboardAvoidingView style={[styles.section, styles.footer]} behavior="padding">
+                <View style={[styles.section, styles.footer]}>
                         <TextInput style={[styles.input, { borderColor: list.color }]} onChangeText={text => this.setState({ newTodo: text })} value={this.state.newTodo} />
                     <TouchableOpacity style={[styles.addTodo, { backgroundColor: list.color }]} onPress={() => this.addTodo()}>
                         <Icon name="plus" size={16} color={colors.white} />
                     </TouchableOpacity>
-                </KeyboardAvoidingView>
-            </SafeAreaView>
-            </KeyboardAvoidingView>
+                </View>
+            </View>
         );
     }
 }

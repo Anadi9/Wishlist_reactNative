@@ -16,19 +16,27 @@ import {
   TouchableOpacity,
   FlatList,
   Modal,
+  ActivityIndicator,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import colors from './app/style/colors';
-import tempData from './tempData';
+//import tempData from './tempData';
 import TodoList from './app/components/TodoList';
 import AddListModal from './app/components/AddListModal';
+import shortid from 'shortid';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+//import Fire from './Fire';
 
 
 class App extends React.Component {
 
+  wishCard = []
+
   state = {
     addTodoVisible: false,
-    lists: tempData,
+    wish: '',
+    lists: [],
+    loading: false,
   };
 
   toggleAddTodoModal() {
@@ -37,10 +45,13 @@ class App extends React.Component {
 
   renderList = item => {
     return <TodoList item={item} updateList={this.updateList} />;
-  }
+  };
 
-  addList = list => {
-    this.setState({ lists: [...this.state.lists, { ...list, id: this.state.lists.length + 1, todos: [] }] });
+  addList = async (list) => {
+    this.wishCard.push({ lists: [...this.state.lists, { ...list, id: shortid.generate(), todos: [] }] });
+    await AsyncStorage.setItem('mywish', JSON.stringify(this.wishCard));
+    this.setState({ lists: [...this.state.lists, { ...list, id: shortid.generate(), todos: [] }] });
+    console.log(await AsyncStorage.getItem('mywish'));
   };
 
   updateList = list => {
@@ -51,7 +62,18 @@ class App extends React.Component {
     });
   };
 
+  async componentDidMount() {
+    
+  }
+
   render() {
+    if (this.state.loading) {
+      return (
+        <View style={styles.container}>
+          <ActivityIndicator size="large" color={colors.blue} />
+        </View>
+      );
+    }
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" backgroundColor={colors.black} />

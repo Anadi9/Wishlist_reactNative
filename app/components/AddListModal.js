@@ -34,7 +34,7 @@ class AddListModal extends React.Component {
 
     render() {
         return (
-            <KeyboardAvoidingView style={styles.container} behavior="padding">
+            <View style={styles.container}>
                 <TouchableOpacity style={styles.closeBtn} onPress={this.props.closeModal}>
                    <Icon name="close" size={24} color={colors.white} />
                 </TouchableOpacity>
@@ -42,7 +42,9 @@ class AddListModal extends React.Component {
                 <View style={{ alignSelf: 'stretch', marginHorizontal: 32 }}>
                     <Text style={styles.title}>Create List</Text>
 
+                    <View>
                     <TextInput style={styles.input} placeholder="List Name ?" onChangeText={text => this.setState({ name: text })} />
+                    </View>
                     
                     <View style={{flexDirection: 'row', marginTop: 15, justifyContent: 'space-between'}}>{this.renderColors()}</View>
 
@@ -50,7 +52,7 @@ class AddListModal extends React.Component {
                        <Text style={{color: colors.white, fontWeight: 'bold'}}>Create!</Text>
                     </TouchableOpacity>
                 </View>
-            </KeyboardAvoidingView>
+            </View>
         );
     }
 }
